@@ -252,6 +252,96 @@
     border: 1px solid var(--border);
   }
 
+  /* FEATURED PROJECT */
+  .project-card-featured {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card-featured:hover {
+    border-color: #10B981;
+    transform: translateY(-3px);
+  }
+  .project-card-featured::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #10B981, #00E5FF, #7C3AED);
+  }
+  .featured-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11px;
+    padding: 4px 10px; border-radius: 4px;
+    margin-bottom: 1rem; font-weight: 600; letter-spacing: 0.06em;
+    background: rgba(16,185,129,0.1); color: #34D399;
+    border: 1px solid rgba(16,185,129,0.25);
+  }
+  .featured-body {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 2rem; align-items: start;
+  }
+  .featured-title {
+    font-size: 1.4rem; font-weight: 600;
+    margin-bottom: 0.5rem; letter-spacing: -0.02em;
+  }
+  .featured-subtitle {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--accent); margin-bottom: 0.75rem; letter-spacing: 0.04em;
+  }
+  .featured-desc {
+    color: var(--muted); font-size: 14px;
+    line-height: 1.75; margin-bottom: 1.25rem;
+  }
+  .featured-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .feat-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 500;
+    padding: 0.5rem 1rem; border-radius: 6px;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .feat-link:hover { opacity: 0.8; }
+  .feat-link-gh {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .feat-link-colab {
+    background: rgba(245,127,23,0.15);
+    border: 1px solid rgba(245,127,23,0.3);
+    color: #FB923C;
+  }
+  .featured-rating {
+    text-align: center;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    min-width: 130px;
+    flex-shrink: 0;
+  }
+  .rating-num {
+    font-family: var(--mono); font-size: 2.2rem;
+    font-weight: 600; color: #34D399; display: block;
+  }
+  .rating-label { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .rating-sub { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+  .contrib-pills { display: flex; flex-direction: column; gap: 6px; margin-top: 1rem; }
+  .contrib-pill {
+    font-family: var(--mono); font-size: 11px;
+    padding: 5px 10px; border-radius: 4px;
+    border: 1px solid var(--border); color: var(--muted);
+    background: var(--surface2);
+  }
+  .contrib-pill strong { color: var(--text); }
+  @media (max-width: 768px) {
+    .featured-body { grid-template-columns: 1fr; }
+    .featured-rating { display: none; }
+  }
+
   /* SKILLS */
   .skills-layout {
     display: grid;
@@ -467,7 +557,7 @@
     <div class="hero-content">
       <p class="eyebrow">// available for internships</p>
       <h1>Manish R<br><span>AI/ML Engineer</span></h1>
-      <p class="hero-tagline">Final-year CS student specialising in AI & ML. I turn messy real-world problems into production-ready solutions — from predictive maintenance pipelines to patented agri-tech platforms.</p>
+      <p class="hero-tagline">Final-year CS student specialising in AI & ML. I build production-ready solutions — from a patented agri-tech platform to physics-informed Graph Neural Networks for epidemic modeling. Paper in preparation for IGARSS 2026.</p>
       <div class="hero-ctas">
         <a href="mailto:manishrajesh366@gmail.com" class="btn-primary">Get in touch</a>
         <a href="https://linkedin.com/in/manish-rajesh-2a4153306" class="btn-outline" target="_blank">LinkedIn ↗</a>
@@ -483,7 +573,7 @@
 <div class="stats-bar">
   <div class="stats-inner">
     <div class="stat fade-up">
-      <span class="stat-num" data-target="2">0</span>
+      <span class="stat-num" data-target="3">0</span>
       <div class="stat-label">Projects Shipped</div>
     </div>
     <div class="stat fade-up">
@@ -505,6 +595,50 @@
 <section id="projects">
   <p class="section-label">// what i've built</p>
   <h2>Projects</h2>
+
+  <!-- FEATURED: PhytoSentinel -->
+  <div class="project-card-featured fade-up">
+    <div class="featured-label">🌿 Research Project · 2026 · Paper in Preparation</div>
+    <div class="featured-body">
+      <div>
+        <div class="featured-title">PhytoSentinel-AESTIN</div>
+        <div class="featured-subtitle">Dynamic Graph Neural Networks for Plant Disease Spread Modeling</div>
+        <p class="featured-desc">
+          Built a physics-informed GNN where the farm connectivity graph is not fixed — it dynamically adapts to wind, humidity, and temperature via DAGCA, a fully differentiable atmospheric graph construction algorithm trained end-to-end. Extended with Bayesian edge uncertainty (Beta-distributed dispersal weights) and connected to epidemic threshold theory via the Next-Generation Matrix formalism to compute R₀ directly from the learned graph.
+        </p>
+        <div class="tech-tags" style="margin-bottom:1.25rem;">
+          <span class="tech-tag">PyTorch Geometric</span>
+          <span class="tech-tag">Graph Neural Networks</span>
+          <span class="tech-tag">Bayesian ML</span>
+          <span class="tech-tag">Epidemic Modeling</span>
+          <span class="tech-tag">Physics-Informed AI</span>
+          <span class="tech-tag">Python 3.10+</span>
+        </div>
+        <div class="featured-links">
+          <a href="https://github.com/MANISH362006/PhytoSentinel-AESTIN" target="_blank" class="feat-link feat-link-gh">
+            ⬡ GitHub Repo ↗
+          </a>
+          <a href="https://colab.research.google.com/github/MANISH362006/PhytoSentinel-AESTIN/blob/main/notebooks/PhytoSentinel_AESTIN_Colab.ipynb#scrollTo=I83RYC347hNl" target="_blank" class="feat-link feat-link-colab">
+            ▶ Run in Colab ↗
+          </a>
+        </div>
+        <div class="contrib-pills" style="margin-top:1.25rem;">
+          <div class="contrib-pill"><strong>DAGCA</strong> — First differentiable graph construction driven by meteorological features for plant disease</div>
+          <div class="contrib-pill"><strong>Bayesian DAGCA</strong> — Beta-distributed uncertainty on pathogen dispersal edges</div>
+          <div class="contrib-pill"><strong>SENR0</strong> — Formal link between learned neural graph and epidemic R₀ via Next-Generation Matrix</div>
+        </div>
+      </div>
+      <div class="featured-rating">
+        <span class="rating-num">6.5</span>
+        <div class="rating-label">/ 10 Rating</div>
+        <div class="rating-sub" style="margin-top:10px;">Workshop-ready</div>
+        <div class="rating-sub">Target: IGARSS 2026</div>
+        <div class="rating-sub" style="margin-top:10px; color:#34D399;">MIT License</div>
+        <div class="rating-sub" style="color:#34D399;">Open Source ✓</div>
+      </div>
+    </div>
+  </div>
+
   <div class="projects-grid">
 
     <div class="project-card card-teal fade-up">
